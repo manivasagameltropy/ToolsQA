@@ -51,8 +51,8 @@ public class BaseClass {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
     }
-    public void closeBrowser() {
-        driver.quit();
+    public void closeBrowser(){
+        driver.close();
     }
 
 }

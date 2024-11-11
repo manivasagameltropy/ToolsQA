@@ -107,7 +107,6 @@ public class ElementsPage extends BaseClass {
         List<String> headerTexts = new ArrayList<>();
         for (WebElement header : tableHeaders) {
             headerTexts.add(header.getText());
-            System.out.println(header.getText());
         }
         return headerTexts;
     }
