@@ -34,6 +34,8 @@ public class ToolsQaHomepageTest extends ToolsQaHomePage {
         elementsPage.clickWebTable();
         List<String> ActualHeadings = elementsPage.printTableHeaders();
         Assert.assertEquals(ActualHeadings,headers,"Test Failed as Expected headings is not present in the table");
+        elementsPage.clickuploadAndDownload();
+        elementsPage.uploadFile("C:\\Users\\Qapitol\\Desktop\\ToolsQADemo\\NewDemo\\src\\test\\resources\\sampleFile (1).jpeg");
         closeBrowser();
     }
 }
