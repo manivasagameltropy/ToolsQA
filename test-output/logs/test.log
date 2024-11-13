@@ -1,0 +1,11 @@
+2024-11-13T10:17:24,204 [main] INFO : Chrome WebDriver started.
+2024-11-13T10:17:24,475 [main] INFO : Extent report setup complete.
+2024-11-13T10:17:24,501 [main] INFO : Test started: contextsearch
+2024-11-13T10:17:27,486 [main] INFO : Opened URL: https://www.flipkart.com/
+2024-11-13T10:17:27,565 [main] DEBUG: Scrolled to element: [[ChromeDriver: chrome on windows (19dc7505f1b4ec56fabd7b5e43aa808c)] -> xpath: //input[@title='Search for Products, Brands and More']]
+2024-11-13T10:17:27,797 [main] INFO : Set text: 'I phone 16' in element: [[ChromeDriver: chrome on windows (19dc7505f1b4ec56fabd7b5e43aa808c)] -> xpath: //input[@title='Search for Products, Brands and More']]
+2024-11-13T10:17:27,841 [main] DEBUG: Scrolled to element: [[ChromeDriver: chrome on windows (19dc7505f1b4ec56fabd7b5e43aa808c)] -> xpath: //button[@type='submit']]
+2024-11-13T10:17:27,853 [main] INFO : Clicking on element: [[ChromeDriver: chrome on windows (19dc7505f1b4ec56fabd7b5e43aa808c)] -> xpath: //button[@type='submit']]
+2024-11-13T10:17:31,125 [main] INFO : Test passed: contextsearch
+2024-11-13T10:17:31,796 [main] INFO : Extent report flushed.
+2024-11-13T10:17:32,117 [main] INFO : Browser closed after all tests are completed.
