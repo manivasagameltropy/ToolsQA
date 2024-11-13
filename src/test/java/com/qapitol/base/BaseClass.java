@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,13 +20,7 @@ public class BaseClass {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         }
     }
-    public WebElement  findElementbyXpath(String xpath) {
-        return driver.findElement(By.xpath(xpath));
-    }
-    public WebElement findElementByText(String dynamicText) {
-        String xpath = String.format("//*[text()='%s']", dynamicText);
-        return driver.findElement(By.xpath(xpath));
-    }
+
     public void click(WebElement element) {
         scrollToElement(element);
         element.click();
@@ -54,5 +49,52 @@ public class BaseClass {
     public void closeBrowser() {
         driver.quit();
     }
+    public void selectRadioButton(String labelText) {
+        // Construct the dynamic XPath using the label text
+        String xpath = "//label[text()='" + labelText + "']/preceding-sibling::input";
+
+        // Find the radio button element
+        WebElement radioButton = driver.findElement(By.xpath(xpath));
+
+        // Click the radio button
+        if (!radioButton.isSelected()) {
+           clickElementUsingJS(radioButton);
+        }
+    }
+    public void selectDate(String day) {
+        // Construct the dynamic XPath for the date, excluding dates outside the current month
+        String xpath = "//div[contains(@class, 'react-datepicker__day react-datepicker__day--" + day + "') " +
+                "and not(contains(@class, 'day--outside-month'))]";
+
+        // Find the date element
+        WebElement dateElement = driver.findElement(By.xpath(xpath));
+
+        // Use Actions to move to and click the date element
+       clickElementUsingJS(dateElement);
+    }
+    public void selectSubjectByText(String text) {
+        String xpath = "//div[text()='" + text + "']";
+        WebElement element = driver.findElement(By.xpath(xpath));
+        clickElementUsingJS(element);
+
+    }
+    public void selectByText(WebElement element, String value) {
+        Select select = new Select(element);
+        select.selectByVisibleText(value);
+    }
+    public static void setTextUsingJS(WebElement element, String text) {
+        // Check if the driver is set
+        if (driver == null) {
+            throw new IllegalStateException("WebDriver is not initialized. Call setDriver() first.");
+        }
+
+        // Create JavaScriptExecutor instance
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Execute JavaScript to set the value of the input field
+        js.executeScript("arguments[0].value = arguments[1];", element, text);
+    }
+
+
 
 }
