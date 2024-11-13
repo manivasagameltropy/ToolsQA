@@ -6,12 +6,14 @@ import com.qapitol.pages.FormsPage;
 import com.qapitol.pages.ToolsQaHomePage;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 public class ToolsQAFormsTest extends FormsPage {
     ToolsQaHomePage toolsQaHomePage;
     ElementsPage elementsPage;
     FormsPage formsPage;
     @Test(description = "This test will Fill out forms and submit in ToolsQA page")
-    public void fillForms() {
+    public void fillForms() throws MalformedURLException {
         startChrome();
         openlink("https://demoqa.com/");
         toolsQaHomePage = new ToolsQaHomePage();
@@ -24,7 +26,8 @@ public class ToolsQAFormsTest extends FormsPage {
         formsPage.setTextInMobileNumberBox(TestData.get("mobilenumber"));
         formsPage.selectGender(TestData.get("gender"));
         formsPage.selectDateOfBirth(TestData.get("year"),TestData.get("month"),TestData.get("day"));
-        formsPage.selectSubject(TestData.get("subject"));
+        formsPage.clickSubmitButton();
+
     }
 
 
