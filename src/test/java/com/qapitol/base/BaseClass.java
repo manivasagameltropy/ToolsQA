@@ -10,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.Browser;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -18,6 +21,8 @@ import org.testng.annotations.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
@@ -31,13 +36,21 @@ public class BaseClass {
     private static final Logger logger = LogManager.getLogger(BaseClass.class);
 
     // Start the Chrome WebDriver and set timeouts
-    public static void startChrome() {
-        if (driver == null) { // Ensure driver is only set up once
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            logger.info("Chrome WebDriver started.");
+    public static void startChrome() throws MalformedURLException {
+           if( TestData.get("execution_env").equalsIgnoreCase("remote")){
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setBrowserName(Browser.CHROME.browserName());
+            capabilities.setPlatform(Platform.WIN11);
+            driver= new RemoteWebDriver(new URL(TestData.get("seleniumGridURL")), capabilities);
         }
+           else {
+               // Ensure driver is only set up once
+               WebDriverManager.chromedriver().setup();
+               driver = new ChromeDriver();
+               driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+               logger.info("Chrome WebDriver started.");
+           }
+
     }
 
     public void click(WebElement element) {
@@ -132,7 +145,7 @@ public class BaseClass {
 
     // Setup Extent Reports
     @BeforeSuite
-    public void startingSession() {
+    public void startingSession() throws MalformedURLException {
         startChrome();
     }
 

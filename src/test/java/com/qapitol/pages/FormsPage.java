@@ -67,6 +67,10 @@ public class FormsPage extends BaseClass {
         subjectsContainer.sendKeys(subject);
         selectSubjectByText(subject);
     }
+    public void clickSubmitButton() {
+        scrollToElement(submitButton);
+        click(submitButton);
+    }
 
 
 
