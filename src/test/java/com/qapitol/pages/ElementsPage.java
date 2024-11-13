@@ -66,6 +66,11 @@ public class ElementsPage extends BaseClass {
     @FindBy(xpath = "//div[@class='rt-resizable-header-content']")
     public List<WebElement> tableHeaders;
 
+    @FindBy(xpath ="//input[@id='uploadFile']")
+    public WebElement uploadFile;
+
+
+
     public void setTextInUserNameBox(String name) {
         setText(userNamebox,name);
     }
@@ -82,6 +87,7 @@ public class ElementsPage extends BaseClass {
     public void clickSubmitButton() {
         click(submitButton);
     }
+
     public void clickTextBox() {
         clickElementUsingJS(textBox);
     }
@@ -96,6 +102,9 @@ public class ElementsPage extends BaseClass {
     }
     public void clickRadioButton() {
         clickElementUsingJS(radioButton);
+
+
+
     }
     public void clickYesRadioButton() {
         clickElementUsingJS(yesRadioButton);
@@ -112,5 +121,16 @@ public class ElementsPage extends BaseClass {
         return headerTexts;
     }
 
-
+    public void clickuploadAndDownload() {
+        clickElementUsingJS(uploadAndDownload);
+    }
+    public void clickButtons() {
+        clickElementUsingJS(buttons);
+    }
+    public void clickuploadFile() {
+        clickElementUsingJS(uploadFile);
+    }
+    public void uploadFile(String path) {
+        uploadFile.sendKeys(path);
+    }
 }

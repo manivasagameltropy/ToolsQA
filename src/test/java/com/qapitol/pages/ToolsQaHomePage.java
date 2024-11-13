@@ -26,7 +26,7 @@ public class ToolsQaHomePage extends BaseClass {
         click(elements);
     }
     public void clickForms() {
-        clickUsingActions(forms);
+        clickElementUsingJS(forms);
     }
     public void clickAlertsandFrames() {
         clickUsingActions(alertsandFrames);
