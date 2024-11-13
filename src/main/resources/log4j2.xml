@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <!-- Console appender for logging to the console -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{ISO8601} [%t] %-5level: %msg%n%throwable"/>
+        </Console>
+
+        <!-- File appender for logging to a file -->
+        <File name="File" fileName="test-output/logs/test.log">
+            <PatternLayout pattern="%d{ISO8601} [%t] %-5level: %msg%n%throwable"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <!-- Root logger -->
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+
+        <!-- Logger for specific packages or classes -->
+        <Logger name="org.openqa.selenium" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+    </Loggers>
+</Configuration>
