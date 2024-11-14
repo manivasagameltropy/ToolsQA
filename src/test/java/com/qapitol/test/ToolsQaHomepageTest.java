@@ -1,8 +1,10 @@
 package com.qapitol.test;
 
+import com.aventstack.extentreports.Status;
 import com.qapitol.pages.ElementsPage;
 import com.qapitol.pages.ToolsQaHomePage;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -14,8 +16,8 @@ public class ToolsQaHomepageTest extends ToolsQaHomePage {
     List<String> headers = Arrays.asList("First Name", "Last Name", "Age", "Email", "Salary", "Department", "Action");
 
     @Test
-    public void sampleTest() {
-        startChrome();
+    public void Test01() {
+        test.log(Status.INFO, "Starting test case");
         openlink("https://demoqa.com/");
         toolsQaHomePage = new ToolsQaHomePage();
         toolsQaHomePage.clickElements();
@@ -34,6 +36,18 @@ public class ToolsQaHomepageTest extends ToolsQaHomePage {
         elementsPage.clickWebTable();
         List<String> ActualHeadings = elementsPage.printTableHeaders();
         Assert.assertEquals(ActualHeadings,headers,"Test Failed as Expected headings is not present in the table");
-        closeBrowser();
+        elementsPage.clickuploadAndDownload();
+        elementsPage.uploadFile("C:\\Users\\Qapitol\\Desktop\\ToolsQADemo\\NewDemo\\src\\test\\resources\\sampleFile (1).jpeg");
+        test.pass("Navigate to DemoQA.com");
     }
+
+    @Test
+    public void Test02() {
+        logPass("Welocom to test 2");
+        openlink("https://google.com/");
+        loggerMsg("Checking log4j");
+        logFail("Failed");
+    }
+
+
 }
