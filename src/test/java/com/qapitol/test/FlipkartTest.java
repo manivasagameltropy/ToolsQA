@@ -9,7 +9,6 @@ public class FlipkartTest extends Flipkartpage {
      public void contextsearch(){
         openlink("https://www.flipkart.com/");
         flipkartpage = new Flipkartpage();
-        flipkartpage.enterandSearchProduct("I phone 16");
         flipkartpage.validateSearchProducts();
 
     }

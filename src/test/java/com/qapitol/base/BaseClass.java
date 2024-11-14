@@ -3,6 +3,7 @@ package com.qapitol.base;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.qapitol.pages.Flipkartpage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -31,15 +32,25 @@ public class BaseClass {
     protected ExtentReports extent;
     protected ExtentTest test;
     public static WebDriver driver;
+    Flipkartpage flipkartpage;
 
     // Log4j Logger instance
     private static final Logger logger = LogManager.getLogger(BaseClass.class);
 
     // Start the Chrome WebDriver and set timeouts
     public static void startChrome() throws MalformedURLException {
+
            if( TestData.get("execution_env").equalsIgnoreCase("remote")){
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setBrowserName(Browser.CHROME.browserName());
+            if( TestData.get("browsername").equalsIgnoreCase("chrome")) {
+                capabilities.setBrowserName(Browser.CHROME.browserName());
+            }
+            else if( TestData.get("browsername").equalsIgnoreCase("firefox")) {
+                capabilities.setBrowserName(Browser.FIREFOX.browserName());
+            }
+            else if( TestData.get("browsername").equalsIgnoreCase("edge")) {
+                capabilities.setBrowserName(Browser.EDGE.browserName());
+            }
             capabilities.setPlatform(Platform.WIN11);
             driver= new RemoteWebDriver(new URL(TestData.get("seleniumGridURL")), capabilities);
         }
