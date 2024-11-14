@@ -37,8 +37,10 @@ public class ToolsQaHomepageTest extends ToolsQaHomePage {
         List<String> ActualHeadings = elementsPage.printTableHeaders();
         Assert.assertEquals(ActualHeadings,headers,"Test Failed as Expected headings is not present in the table");
         elementsPage.clickuploadAndDownload();
-        elementsPage.uploadFile("C:\\Users\\Qapitol\\Desktop\\ToolsQADemo\\NewDemo\\src\\test\\resources\\sampleFile (1).jpeg");
-        closeBrowser();
+        String userDir = System.getProperty("user.dir");
+        // Construct the path to the properties file relative to the project root directory
+        String filePath = userDir + "\\src\\test\\resources\\sampleFile (1).jpeg";
+        elementsPage.uploadFile(filePath);
         test.pass("Navigate to DemoQA.com");
     }
 

@@ -14,7 +14,7 @@ public class ToolsQAFormsTest extends FormsPage {
     FormsPage formsPage;
     @Test(description = "This test will Fill out forms and submit in ToolsQA page")
     public void fillForms() throws MalformedURLException {
-        startChrome();
+//        startChrome();
         openlink("https://demoqa.com/");
         toolsQaHomePage = new ToolsQaHomePage();
         toolsQaHomePage.clickForms();
